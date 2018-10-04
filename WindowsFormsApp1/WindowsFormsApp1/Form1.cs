@@ -24,35 +24,44 @@ namespace WindowsFormsApp1
 
         private void button11_Click(object sender, EventArgs e)
         {
-            textBox1.Text += (sender as Button).Text;
+            if (textBox1.Text != "0") textBox1.Text += (sender as Button).Text;
+            else
+            {
+                textBox1.Clear();
+                textBox1.Text += (sender as Button).Text;
+            }
         }
         
         private void button13_Click(object sender, EventArgs e)
         {
-            
+            if (a == 0 && textBox1.Text != "") a = Convert.ToDouble(textBox1.Text);
+            else if (textBox1.Text != "")
+            {
                 b = Convert.ToDouble(textBox1.Text);
                 switch (znak)
                 {
                     case '+':
-                        c = a + b;
+                        a = a + b;
                         break;
                     case '-':
-                        c = a - b;
+                        a = a - b;
                         break;
                     case 'x':
-                        c = a * b;
+                        a = a * b;
                         break;
                     case '/':
-                        c = a / b;
+                        a = a / b;
                         break;
                 }
-            textBox1.Text = c.ToString();
-            a = 0;
-            b = 0;
-            c = 0;
+                znak = (sender as Button).Text[0];
+                textBox1.Text = a.ToString();
+                a = 0;
+                b = 0;
+            }
+            else textBox1.Text = a.ToString();
         }
 
-        double a = 0, b = 0, c = 0;
+        double a = 0, b = 0;
         char znak = 'a';
 
         private void button18_Click(object sender, EventArgs e)
@@ -65,15 +74,16 @@ namespace WindowsFormsApp1
 
         private void button19_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
+            if (textBox1.Text != "" && textBox1.Text[0] == '-' && textBox1.Text.Length == 2)
+                textBox1.Clear();
+            else if (textBox1.Text != "")
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1, 1);
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-            
-            if (a == 0) a = Convert.ToDouble(textBox1.Text);
-            else
+            if (a == 0 && textBox1.Text != "") a = Convert.ToDouble(textBox1.Text);
+            else if (textBox1.Text != "")
             {
                 b = Convert.ToDouble(textBox1.Text);
                 switch (znak)
@@ -123,42 +133,56 @@ namespace WindowsFormsApp1
 
         private void button22_Click(object sender, EventArgs e)
         {
-            a = Convert.ToDouble(textBox1.Text);
-            c = Math.Sqrt(a);
-            textBox1.Text = c.ToString();
-            c = 0;
-            a = 0;
-            b = 0;
+            if (textBox1.Text != "")
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                a = Math.Sqrt(a);
+                textBox1.Text = a.ToString();
+                a = 0;
+                b = 0;
+            }
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            a = Convert.ToDouble(textBox1.Text);
-            c = 1 / a;
-            textBox1.Text = c.ToString();
-            c = 0;
-            a = 0;
-            b = 0;
-        }
-
-        private void button20_Click_1(object sender, EventArgs e)
-        {
-            a = Convert.ToDouble(textBox1.Text);
-            c = a / 100;
-            textBox1.Text = c.ToString();
-            c = 0;
-            a = 0;
-            b = 0;
+            if (textBox1.Text != "")
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                a = 1 / a;
+                textBox1.Text = a.ToString();
+                a = 0;
+                b = 0;
+            }
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-            a = Convert.ToDouble(textBox1.Text);
-            c = Math.Pow(a, 2);
-            textBox1.Text = c.ToString();
-            c = 0;
-            a = 0;
-            b = 0;
+            if (textBox1.Text != "")
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                a = Math.Pow(a, 2);
+                textBox1.Text = a.ToString();
+                a = 0;
+                b = 0;
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "" || textBox1.Text.Contains(","));
+            else textBox1.Text += (sender as Button).Text;
+        }
+
+        private void button20_Click_1(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                a = a / 100;
+                textBox1.Text = a.ToString();
+                a = 0;
+                b = 0;
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -166,7 +190,6 @@ namespace WindowsFormsApp1
             textBox1.Clear();
             a = 0;
             b = 0;
-            c = 0;
         }
     }
 }
