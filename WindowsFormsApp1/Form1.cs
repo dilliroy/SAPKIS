@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace WindowsFormsApp1
 {
@@ -45,7 +46,14 @@ namespace WindowsFormsApp1
                         a = a * b;
                         break;
                     case '/':
-                        a = a / b;
+                        if (b != 0) a = a / b;
+                        else
+                        {
+                            label1.Text = "Ошибка работы!!!";
+                            textBox1.Clear();
+                            a = 0;
+                            b = 0;
+                        }
                         break;
                 }
                 znak = (sender as Button).Text[0];
@@ -97,7 +105,14 @@ namespace WindowsFormsApp1
                         a = a * b;
                         break;
                     case '/':
-                        a = a / b;
+                        if (b != 0) a = a / b;
+                        else
+                        {
+                            label1.Text = "Ошибка работы!!!";
+                            textBox1.Clear();
+                            a = 0;
+                            b = 0;
+                        }
                         break;
                 }
             }
@@ -162,29 +177,10 @@ namespace WindowsFormsApp1
             }
             else if (textBox1.Text != "" && textBox1.Text[0] == '-')
             {
-                textBox1.Text = "Ошибка работы!!!";
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
-                button4.Enabled = false;
-                button5.Enabled = false;
-                button6.Enabled = false;
-                button7.Enabled = false;
-                button8.Enabled = false;
-                button9.Enabled = false;
-                button11.Enabled = false;
-                button12.Enabled = false;
-                button13.Enabled = false;
-                button14.Enabled = false;
-                button15.Enabled = false;
-                button16.Enabled = false;
-                button17.Enabled = false;
-                button18.Enabled = false;
-                button19.Enabled = false;
-                button20.Enabled = false;
-                button21.Enabled = false;
-                button22.Enabled = false;
-                button23.Enabled = false;
+                label1.Text = "Ошибка работы!!!";
+                textBox1.Clear();
+                a = 0;
+                b = 0;
             }
         }
 
@@ -230,31 +226,21 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void button24_Click(object sender, EventArgs e)
+        {
+            RegistryKey mykey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            mykey.SetValue("WindowsFormsApp1", Application.ExecutablePath);
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            RegistryKey mykey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            mykey.DeleteValue("lab1");
+        }
+
         private void button10_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
-            button1.Enabled = true;
-            button2.Enabled = true;
-            button3.Enabled = true;
-            button4.Enabled = true;
-            button5.Enabled = true;
-            button6.Enabled = true;
-            button7.Enabled = true;
-            button8.Enabled = true;
-            button9.Enabled = true;
-            button11.Enabled = true;
-            button12.Enabled = true;
-            button13.Enabled = true;
-            button14.Enabled = true;
-            button15.Enabled = true;
-            button16.Enabled = true;
-            button17.Enabled = true;
-            button18.Enabled = true;
-            button19.Enabled = true;
-            button20.Enabled = true;
-            button21.Enabled = true;
-            button22.Enabled = true;
-            button23.Enabled = true;
             a = 0;
             b = 0;
             label1.Text = "";
