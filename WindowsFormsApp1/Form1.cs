@@ -235,7 +235,7 @@ namespace WindowsFormsApp1
         private void button25_Click(object sender, EventArgs e)
         {
             RegistryKey mykey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            mykey.DeleteValue("lab1");
+            mykey.DeleteValue("WindowsFormsApp1");
         }
 
         private void button10_Click(object sender, EventArgs e)
