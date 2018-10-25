@@ -228,14 +228,30 @@ namespace WindowsFormsApp1
 
         private void button24_Click(object sender, EventArgs e)
         {
-            RegistryKey mykey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            mykey.SetValue("WindowsFormsApp1", Application.ExecutablePath);
+            const string name = "MyApplication";
+            string ExePath = System.Windows.Forms.Application.ExecutablePath;
+            Microsoft.Win32.RegistryKey reg;
+            reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            try
+            {
+                reg.SetValue(name, ExePath);
+                reg.Close();
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void button25_Click(object sender, EventArgs e)
         {
-            RegistryKey mykey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            mykey.DeleteValue("WindowsFormsApp1");
+            Microsoft.Win32.RegistryKey reg;
+            reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            try
+            {
+                reg.DeleteValue("MyApplication");
+                reg.Close();
+
+            }
+            catch { }
         }
 
         private void button10_Click(object sender, EventArgs e)
